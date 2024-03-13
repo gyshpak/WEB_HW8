@@ -1,0 +1,7 @@
+gyshpak
+xIpDo0ILyYfDMMck
+
+mongodb+srv://gyshpak:xIpDo0ILyYfDMMck@cluster0.2ako3fc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+mongodb+srv://gyshpak:<password>@cluster0.2ako3fc.mongodb.net/
