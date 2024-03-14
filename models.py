@@ -1,31 +1,10 @@
-from datetime import datetime
-
-from mongoengine import EmbeddedDocument, Document
+from mongoengine import Document
 from mongoengine.fields import (
-    BooleanField,
     DateTimeField,
-    EmbeddedDocumentField,
     ListField,
     StringField,
     ReferenceField,
 )
-
-
-# class Tag(EmbeddedDocument):
-#     name = StringField()
-
-
-# class Record(EmbeddedDocument):
-#     description = StringField()
-#     done = BooleanField(default=False)
-
-
-# class Notes(Document):
-#     name = StringField()
-#     created = DateTimeField(default=datetime.now())
-#     records = ListField(EmbeddedDocumentField(Record))
-#     tags = ListField(EmbeddedDocumentField(Tag))
-#     meta = {"allow_inheritance": True}
 
 
 class Author(Document):
@@ -39,4 +18,3 @@ class Quote(Document):
     tags = ListField()
     authors = ReferenceField(Author)
     quotes = StringField()
-
