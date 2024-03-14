@@ -11,21 +11,21 @@ from mongoengine.fields import (
 )
 
 
-class Tag(EmbeddedDocument):
-    name = StringField()
+# class Tag(EmbeddedDocument):
+#     name = StringField()
 
 
-class Record(EmbeddedDocument):
-    description = StringField()
-    done = BooleanField(default=False)
+# class Record(EmbeddedDocument):
+#     description = StringField()
+#     done = BooleanField(default=False)
 
 
-class Notes(Document):
-    name = StringField()
-    created = DateTimeField(default=datetime.now())
-    records = ListField(EmbeddedDocumentField(Record))
-    tags = ListField(EmbeddedDocumentField(Tag))
-    meta = {"allow_inheritance": True}
+# class Notes(Document):
+#     name = StringField()
+#     created = DateTimeField(default=datetime.now())
+#     records = ListField(EmbeddedDocumentField(Record))
+#     tags = ListField(EmbeddedDocumentField(Tag))
+#     meta = {"allow_inheritance": True}
 
 
 class Author(Document):
@@ -36,4 +36,7 @@ class Author(Document):
 
 
 class Quote(Document):
-    autors = ReferenceField(Author)
+    tags = ListField()
+    authors = ReferenceField(Author)
+    quotes = StringField()
+
