@@ -1,9 +1,18 @@
 import connect
 from models import Author, Quote
 
-def com_for_author(args):
-    print(args)
+def all_quotes_by_name(args):
+    author = Author.objects(fullname=args[1].strip()).first()
+    print(f"author = {author.fullname}")
+    quotes_ = Quote.objects(authors=author)
+    list_quotes = []
+    for quote in quotes_:
+        # print(f'quote: {quote.quotes}')
+        list_quotes.append(quote.quotes)
 
+
+
+   
 
 def com_for_authors(args):
     print(args)
@@ -18,12 +27,12 @@ def com_for_quotes(args):
 
 
 commands = {
-    "name": com_for_author,
+    "name": all_quotes_by_name,
     "names": com_for_authors,
     "tag": com_for_quote,
     "tags": com_for_quotes,
-    "born_data": com_for_author,
-    "location": com_for_author,
+    # "born_data": com_for_author,
+    # "location": com_for_author,
 }
 
 def run_command(args):
@@ -39,7 +48,10 @@ def ent_command():
             print("Wrong command, try again\n")
         else:
             comm_ = run_command(inp_[0])
-            comm_(inp_[1:])
+            comm_(inp_)
+            # res = comm_(inp_)
+            # for i in res:
+            #     print(i)
 
 
 if __name__ == "__main__":

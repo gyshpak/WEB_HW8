@@ -14,20 +14,23 @@ def input_(file_name):
         data = json.load(file)
     return data
 
-
-some_iterable: Iterable[dict] = input_(file_name_authors)
-for i in some_iterable:
+# Запис авторів
+authors_data = input_(file_name_authors)
+for author_data in authors_data:
     Author(
-        fullname=i.get("fullname"),
-        born_date=datetime.strptime(i.get("born_date"), "%B %d, %Y"),
-        born_location=i.get("born_location"),
-        description=i.get("description"),
+        fullname=author_data.get("fullname"),
+        born_date=datetime.strptime(author_data.get("born_date"), "%B %d, %Y"),
+        born_location=author_data.get("born_location"),
+        description=author_data.get("description"),
     ).save()
 
-some_iterable: Iterable[dict] = input_(file_name_qoutes)
-for i in some_iterable:
+# Запис цитат
+quotes_data = input_(file_name_qoutes)
+for quote_data in quotes_data:
+    author_fullname = quote_data.get("author")
+    author = Author.objects(fullname=author_fullname).first()
     Quote(
-        tags=i.get("tags"),
-        authors=i.get("author"),
-        quotes=i.get("quote"),
+        tags=quote_data.get("tags"),
+        authors=author,
+        quotes=quote_data.get("quote"),
     ).save()
