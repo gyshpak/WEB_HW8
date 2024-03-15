@@ -9,13 +9,15 @@ file_name_authors = "authors.json"
 file_name_qoutes = "qoutes.json"
 
 
+# Читання даних з json файлів
 def input_(file_name):
     with open(file_name, "r", encoding="utf-8") as file:
         data = json.load(file)
     return data
 
+
 # Запис авторів
-authors_data = input_(file_name_authors)
+authors_data: Iterable[dict] = input_(file_name_authors)
 for author_data in authors_data:
     Author(
         fullname=author_data.get("fullname"),
@@ -24,11 +26,14 @@ for author_data in authors_data:
         description=author_data.get("description"),
     ).save()
 
+
 # Запис цитат
-quotes_data = input_(file_name_qoutes)
+quotes_data: Iterable[dict] = input_(file_name_qoutes)
 for quote_data in quotes_data:
     author_fullname = quote_data.get("author")
-    author = Author.objects(fullname=author_fullname).first()
+    author = Author.objects(
+        fullname=author_fullname
+    ).first()  # знаходимо об'єкт Автора для прив'язки до поля authors
     Quote(
         tags=quote_data.get("tags"),
         authors=author,
