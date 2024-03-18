@@ -4,6 +4,7 @@ from mongoengine.fields import (
     ListField,
     StringField,
     ReferenceField,
+    BooleanField,
 )
 
 
@@ -18,3 +19,11 @@ class Quote(Document):
     tags = ListField()
     authors = ReferenceField(Author)
     quotes = StringField()
+
+
+# For 2 part
+class Contact(Document):
+    name = StringField(max_length=150)
+    completed = BooleanField(default=False)
+    email = StringField(max_length=150)
+    
