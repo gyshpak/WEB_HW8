@@ -6,7 +6,7 @@ from typing import Iterable
 
 
 file_name_authors = "authors.json"
-file_name_qoutes = "qoutes.json"
+file_name_qoutes = "quotes.json"
 
 
 # Читання даних з json файлів
